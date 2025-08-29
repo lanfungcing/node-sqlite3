@@ -1,4 +1,4 @@
-name: CI
+name: CI in ubuntu
 on:
   workflow_dispatch:
   pull_request:
