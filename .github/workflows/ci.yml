@@ -3,8 +3,6 @@ on:
   workflow_dispatch:
   pull_request:
   push:
-    branches:
-      - master
     tags:
       - '*'
 env:
@@ -83,7 +81,7 @@ jobs:
           echo "CXXFLAGS=${CXXFLAGS:-} -include ../src/gcc-preinclude.h" >> $GITHUB_ENV
 
       - name: Build binaries
-        run: yarn prebuild -a ${{ env.TARGET }}
+        run: yarn prebuild --arch ${{ env.TARGET }}
 
       - name: Print binary info
         if: contains(matrix.os, 'ubuntu')
