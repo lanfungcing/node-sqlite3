@@ -62,7 +62,7 @@
   },
   "scripts": {
     "install": "node-gyp-build",
-    "prebuild": "prebuildify --target=18.17.0",
+    "prebuild": "prebuildify --target=18.17.0 --tag-libc",
     "rebuild": "node-gyp rebuild",
     "upload": "prebuild --verbose --prerelease",
     "test": "node test/support/createdb.js && mocha -R spec --timeout 480000"
