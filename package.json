@@ -7,12 +7,6 @@
     "name": "Mapbox",
     "url": "https://mapbox.com/"
   },
-  "binary": {
-    "napi_versions": [
-      3,
-      6
-    ]
-  },
   "contributors": [
     "Daniel Lockyer <hi@daniellockyer.com>",
     "Konstantin Käfer <mail@kkaefer.com>",
@@ -37,22 +31,23 @@
     "deps/",
     "lib/*.js",
     "lib/*.d.ts",
-    "src/"
+    "src/",
+    "prebuilds/",
+    "pacakge.json"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/TryGhost/node-sqlite3.git"
   },
   "dependencies": {
-    "bindings": "^1.5.0",
     "node-addon-api": "^7.0.0",
-    "prebuild-install": "^7.1.1",
+    "node-gyp-build": "^4.8.4",
     "tar": "^6.1.11"
   },
   "devDependencies": {
     "eslint": "8.56.0",
     "mocha": "10.2.0",
-    "prebuild": "12.1.0"
+    "prebuildify": "6.0.1"
   },
   "peerDependencies": {
     "node-gyp": "8.x"
@@ -66,8 +61,8 @@
     "node-gyp": "8.x"
   },
   "scripts": {
-    "install": "prebuild-install -r napi || node-gyp rebuild",
-    "prebuild": "prebuild --runtime napi --all --verbose",
+    "install": "node-gyp-build",
+    "prebuild": "prebuildify --target=18.17.0",
     "rebuild": "node-gyp rebuild",
     "upload": "prebuild --verbose --prerelease",
     "test": "node test/support/createdb.js && mocha -R spec --timeout 480000"
